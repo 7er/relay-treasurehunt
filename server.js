@@ -30,7 +30,7 @@ function startAppServer(callback) {
   });
   appServer = new WebpackDevServer(compiler, {
     contentBase: '/public/',
-    proxy: {'/graphql': `http://localhost:${GRAPHQL_PORT}`},
+    proxy: {'/graphql': `http://localhost:5000`},
     publicPath: '/js/',
     stats: {colors: true}
   });
@@ -74,7 +74,7 @@ function startServers(callback) {
   }
 
   // Compile the schema
-  exec('npm run update-schema', (error, stdout) => {
+  exec('npm ls', (error, stdout) => {
     console.log(stdout);
     let doneTasks = 0;
     function handleTaskDone() {
@@ -87,6 +87,7 @@ function startServers(callback) {
     startAppServer(handleTaskDone);
   });
 }
+/*
 const watcher = chokidar.watch('./data/{database,schema}.js');
 watcher.on('change', path => {
   console.log(`\`${path}\` changed. Restarting.`);
@@ -94,4 +95,5 @@ watcher.on('change', path => {
     console.log('Restart your browser to use the updated schema.')
   );
 });
+*/
 startServers();

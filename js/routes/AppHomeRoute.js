@@ -2,9 +2,11 @@ import Relay from 'react-relay';
 
 export default class extends Relay.Route {
   static queries = {
-    game: () => Relay.QL`
+    allTransactions: () => Relay.QL`
       query {
-        game
+        allTransactions {
+          totalCount
+        }
       }
     `,
   };
