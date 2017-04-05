@@ -3,21 +3,23 @@ import Relay from 'react-relay';
 
 class App extends React.Component {
     render() {
-      console.log(this.props);
+        console.log("props", this.props);
         let headerText;
         return (
-            <h1>hej</h1>
+            <div>
+                <h1>hej</h1>
+                <p>{this.props.transactions.totalCount}</p>
+            </div>
         );
     }
 }
 
 export default Relay.createContainer(App, {
-  fragments: {
-    transactions: () => Relay.QL`
-      fragment on Transaction {
-        amount,
-        description
+    fragments: {
+        transactions: () => Relay.QL`
+      fragment on TransactionsConnection {
+        totalCount      
       }
-    `
-  }
+    `,
+    }
 });
