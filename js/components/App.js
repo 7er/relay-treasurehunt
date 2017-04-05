@@ -12,5 +12,12 @@ class App extends React.Component {
 }
 
 export default Relay.createContainer(App, {
-  fragments: { }
+  fragments: {
+    transactions: () => Relay.QL`
+      fragment on Transaction {
+        amount,
+        description
+      }
+    `
+  }
 });
